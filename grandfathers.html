@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ON GRANDFATHERS</title>
+
+    <style>
+        body {
+            margin: 0;
+            background-color: yellow;
+            padding: 30px;
+            font-family: Arial, Helvetica, sans-serif;
+            color: black;
+        }
+
+        .home-button {
+            position: fixed;
+            top: 10px;
+            right: 25px;
+            width: 120px;
+            height: 120px;
+            display: block;
+            z-index: 100;
+        }
+
+        .home-button img {
+            width: 120px;
+            height: 120px;
+            object-fit: contain;
+            transition: transform 0.2s ease;
+        }
+
+        .home-button:hover img {
+            transform: scale(1.05);
+        }
+
+        h1 {
+            margin: 0;
+            font-weight: 700;
+            font-size: 50px;
+            line-height: 1;
+            color: black;
+        }
+
+        .subtitle {
+            margin-top: 15px;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 16px;
+            line-height: 1.4;
+            font-weight: 400;
+            color: black;
+        }
+
+        .description {
+            position: fixed;
+            left: 30px;
+            right: 30px;
+            top: calc(50% + 300px);
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 16px;
+            line-height: 1.4;
+            font-weight: 400;
+            text-align: justify;
+            color: black;
+        }
+
+        .project {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60%;
+            height: 75vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .project > img {
+            max-width: 75%;
+            max-height: 80%;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            display: block;
+            cursor: zoom-in;
+        }
+
+        .arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 70px;
+            height: 100px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            padding: 0;
+        }
+
+        .arrow img {
+            width: 66px;
+            height: 66px;
+            max-width: none;
+            max-height: none;
+            object-fit: contain;
+            transition: transform 0.2s ease;
+        }
+
+        .left-arrow {
+            left: 2%;
+        }
+
+        .left-arrow img {
+            transform: none;
+        }
+
+        .left-arrow:hover img {
+            transform: scale(1.1);
+        }
+
+        .right-arrow {
+            right: 2%;
+        }
+
+        .right-arrow img {
+            transform: rotate(180deg);
+        }
+
+        .right-arrow:hover img {
+            transform: rotate(180deg) scale(1.1);
+        }
+
+        .page-number {
+            position: fixed;
+            bottom: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 14px;
+            color: black;
+        }
+
+        .image-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: yellow;
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            cursor: zoom-out;
+        }
+
+        .image-overlay img {
+            max-width: 95%;
+            max-height: 95%;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+        }
+
+        @media (max-width: 600px) {
+
+            body {
+                padding: 20px;
+            }
+
+            .home-button {
+                top: 10px;
+                right: 10px;
+                width: 65px;
+                height: 65px;
+            }
+
+            .home-button img {
+                width: 65px;
+                height: 65px;
+            }
+
+            h1 {
+                font-size: 32px;
+                max-width: 75%;
+                line-height: 1.05;
+            }
+
+            .subtitle {
+                margin-top: 12px;
+                font-size: 13px;
+                line-height: 1.4;
+                max-width: 90%;
+            }
+
+            .project {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                width: 100%;
+                height: 40vh;
+            }
+
+            .project > img {
+                max-width: 75%;
+                max-height: 100%;
+            }
+
+            .arrow {
+                width: 40px;
+                height: 60px;
+            }
+
+            .arrow img {
+                width: 38px;
+                height: 38px;
+            }
+
+            .left-arrow {
+                left: 2%;
+            }
+
+            .right-arrow {
+                right: 2%;
+            }
+
+            .description {
+                position: static;
+                margin-top: calc(50vh + 20px);
+                font-size: 13px;
+                line-height: 1.4;
+                text-align: left;
+            }
+
+            .page-number {
+                position: fixed;
+                bottom: 12px;
+                font-size: 12px;
+            }
+
+            .image-overlay img {
+                max-width: 95vw;
+                max-height: 90vh;
+            }
+        }
+
+        @media (max-width: 380px) {
+
+            h1 {
+                font-size: 27px;
+            }
+
+            .subtitle,
+            .description {
+                font-size: 12px;
+            }
+
+            .project > img {
+                max-width: 72%;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <a href="index.html" class="home-button">
+        <img src="image1.png" alt="Back to home">
+    </a>
+
+    <div class="header">
+        <h1>'ON GRANDFATHERS'</h1>
+
+        <div class="subtitle">
+            - wood<br>
+            - cardboard<br>
+            - glazed ceramics<br>
+            - acrylic<br><br>
+            Made in collaboration with Luka Boduljak.<br>
+            Exhibited in Paradise, The Hague as part of the<br>
+            exhibition 'Where are you currently' vol.4.
+        </div>
+    </div>
+
+    <div class="description">
+        Some grandfathers say they can still drive, even when they can't, and some tell the same stories, again and again, and some don't tell anything at all, but they leave something that speaks for them.<br>
+
+        Yan and Luka tell the story of a made up someone, through objects that function chronologically as storytellers. Through scenography they turn fragments of the story into separate scenes, linked through reappearing motives.
+    </div>
+
+    <div class="project">
+
+        <button
+            class="arrow left-arrow"
+            onclick="previousImage()"
+            aria-label="Previous image">
+            <img src="arrow.png" alt="">
+        </button>
+
+        <img
+            id="projectImage"
+            src="grandfathers1.jpg"
+            alt="On Grandfathers">
+
+        <button
+            class="arrow right-arrow"
+            onclick="nextImage()"
+            aria-label="Next image">
+            <img src="arrow.png" alt="">
+        </button>
+
+    </div>
+
+    <div class="page-number" id="pageNumber">
+        1 / 6
+    </div>
+
+    <div class="image-overlay" id="imageOverlay">
+        <img
+            id="enlargedImage"
+            src=""
+            alt="Enlarged On Grandfathers image">
+    </div>
+
+    <script>
+
+        const images = [
+            "grandfathers1.jpg",
+            "grandfathers2.jpg",
+            "grandfathers3.jpg",
+            "grandfathers4.jpg",
+            "grandfathers5.jpg",
+            "grandfathers6.JPG"
+        ];
+
+        let currentImage = 0;
+
+        const image = document.getElementById("projectImage");
+        const pageNumber = document.getElementById("pageNumber");
+        const imageOverlay = document.getElementById("imageOverlay");
+        const enlargedImage = document.getElementById("enlargedImage");
+
+        function showImage() {
+            image.src = images[currentImage];
+
+            pageNumber.textContent =
+                (currentImage + 1) + " / " + images.length;
+        }
+
+        function nextImage() {
+            currentImage = (currentImage + 1) % images.length;
+            showImage();
+        }
+
+        function previousImage() {
+            currentImage = (currentImage - 1 + images.length) % images.length;
+            showImage();
+        }
+
+        image.addEventListener("click", function() {
+            enlargedImage.src = image.src;
+            imageOverlay.style.display = "flex";
+        });
+
+        imageOverlay.addEventListener("click", function() {
+            imageOverlay.style.display = "none";
+        });
+
+        document.addEventListener("keydown", function(event) {
+
+            if (event.key === "Escape") {
+                imageOverlay.style.display = "none";
+                return;
+            }
+
+            if (imageOverlay.style.display === "flex") {
+                return;
+            }
+
+            if (event.key === "ArrowRight") {
+                nextImage();
+            }
+
+            if (event.key === "ArrowLeft") {
+                previousImage();
+            }
+
+        });
+
+    </script>
+
+</body>
+</html>
