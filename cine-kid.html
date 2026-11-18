@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CINEKID CLIENT ASSIGNMENT</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background-color: lightgreen;
+            padding: 30px;
+            font-family: Arial, Helvetica, sans-serif;
+            color: black;
+        }
+
+        /* TITLE */
+
+        h1 {
+            margin: 0;
+            font-weight: 700;
+            font-size: 50px;
+            line-height: 1;
+            color: black;
+        }
+
+        /* TEXT BOX UNDER TITLE */
+
+        .subtitle {
+            display: block;
+            margin-top: 15px;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 16px;
+            line-height: 1.4;
+            font-weight: 400;
+            color: black;
+        }
+
+        /* HOME / BACK BUTTON */
+
+        .home-button {
+            position: fixed;
+            top: 10px;
+            right: 25px;
+            width: 120px;
+            height: 120px;
+            z-index: 100;
+            display: block;
+        }
+
+        .home-button img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            transition: transform 0.2s ease;
+        }
+
+        .home-button:hover img {
+            transform: scale(1.1);
+        }
+
+        /* IMAGE AREA */
+
+        .project {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+
+            width: 60%;
+            height: 75vh;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .project > img {
+            max-width: 85%;
+            max-height: 85%;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            display: block;
+            cursor: zoom-in;
+        }
+
+        /* ARROWS */
+
+        .arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+
+            width: 70px;
+            height: 100px;
+
+            background: transparent;
+            border: none;
+            cursor: pointer;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            z-index: 10;
+            padding: 0;
+        }
+
+        .arrow img {
+            width: 66px;
+            height: 66px;
+            max-width: none;
+            max-height: none;
+            object-fit: contain;
+            transition: transform 0.2s ease;
+        }
+
+        /* LEFT ARROW */
+
+        .left-arrow {
+            left: -5%;
+        }
+
+        .left-arrow img {
+            transform: none;
+        }
+
+        .left-arrow:hover img {
+            transform: scale(1.1);
+        }
+
+        /* RIGHT ARROW */
+
+        .right-arrow {
+            right: -5%;
+        }
+
+        .right-arrow img {
+            transform: rotate(180deg);
+        }
+
+        .right-arrow:hover img {
+            transform: rotate(180deg) scale(1.1);
+        }
+
+        /* DESCRIPTION */
+
+        .description {
+            position: fixed;
+            left: 30px;
+            right: 30px;
+            top: calc(50% + 300px);
+
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 16px;
+            line-height: 1.4;
+            font-weight: 400;
+            text-align: justify;
+            color: black;
+        }
+
+        /* PAGE NUMBER */
+
+        .page-number {
+            position: fixed;
+            bottom: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 14px;
+            color: black;
+            z-index: 5;
+        }
+
+        /* ENLARGED IMAGE OVERLAY */
+
+        .image-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: lightgreen;
+            z-index: 1000;
+
+            justify-content: center;
+            align-items: center;
+        }
+
+        .image-overlay.active {
+            display: flex;
+        }
+
+        .image-overlay img {
+            max-width: 90%;
+            max-height: 90%;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            display: block;
+            cursor: zoom-out;
+        }
+
+        /* MOBILE RESPONSIVE */
+
+        @media (max-width: 600px) {
+
+            body {
+                padding: 20px;
+                overflow-y: auto;
+                overflow-x: hidden;
+                min-height: 100vh;
+                min-height: 100dvh;
+            }
+
+            /* TITLE */
+
+            h1 {
+                font-size: 32px;
+                line-height: 1.05;
+                max-width: 75%;
+            }
+
+            /* SUBTITLE */
+
+            .subtitle {
+                margin-top: 12px;
+                font-size: 13px;
+                line-height: 1.4;
+            }
+
+            /* HOME BUTTON */
+
+            .home-button {
+                top: 10px;
+                right: 10px;
+                width: 65px;
+                height: 65px;
+            }
+
+            /* IMAGE AREA */
+
+            .project {
+                position: relative;
+                top: auto;
+                left: auto;
+                transform: none;
+
+                width: 100%;
+                height: 42vh;
+                height: 42dvh;
+                min-height: 220px;
+                max-height: 380px;
+
+                margin-top: 25px;
+            }
+
+            .project > img {
+                max-width: 72%;
+                max-height: 100%;
+            }
+
+            /* ARROWS */
+
+            .arrow {
+                width: 40px;
+                height: 60px;
+            }
+
+            .arrow img {
+                width: 38px;
+                height: 38px;
+            }
+
+            .left-arrow {
+                left: 0;
+            }
+
+            .right-arrow {
+                right: 0;
+            }
+
+            /* DESCRIPTION */
+
+            .description {
+                position: relative;
+                left: auto;
+                right: auto;
+                top: auto;
+
+                margin-top: 25px;
+                margin-bottom: 55px;
+
+                font-size: 13px;
+                line-height: 1.4;
+                text-align: left;
+            }
+
+            /* PAGE NUMBER */
+
+            .page-number {
+                position: fixed;
+                bottom: 12px;
+                font-size: 12px;
+            }
+
+            /* ENLARGED IMAGE */
+
+            .image-overlay img {
+                max-width: 95vw;
+                max-height: 90vh;
+            }
+        }
+
+        /* SMALLER PHONES */
+
+        @media (max-width: 380px) {
+
+            h1 {
+                font-size: 27px;
+            }
+
+            .subtitle,
+            .description {
+                font-size: 12px;
+            }
+
+            .project {
+                height: 38vh;
+                height: 38dvh;
+            }
+
+            .project > img {
+                max-width: 70%;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <!-- TITLE AND EXTRA TEXT -->
+
+    <h1>CINEKID CLIENT ASSIGNMENT</h1>
+
+    <div class="subtitle">
+        - wood<br>- acrylic<br>- tvs<br>- touchscreen thing<br><br>Made for and exhibited at CineKid<br>Festival 40th anniversary, Amsterdam,<br>October 2026.
+    </div>
+
+    <!-- HOME / BACK BUTTON -->
+
+    <a href="index.html" class="home-button">
+        <img src="image1.png" alt="Back to home">
+    </a>
+
+    <!-- IMAGE AREA -->
+
+    <div class="project">
+
+        <button
+            class="arrow left-arrow"
+            onclick="previousImage()"
+            aria-label="Previous image">
+            <img src="arrow.png" alt="">
+        </button>
+
+        <img
+            id="projectImage"
+            src="area0.jpeg"
+            alt="Cine Kid Client Assignment"
+            onclick="openImage()">
+
+        <button
+            class="arrow right-arrow"
+            onclick="nextImage()"
+            aria-label="Next image">
+            <img src="arrow.png" alt="">
+        </button>
+
+    </div>
+
+    <!-- DESCRIPTION -->
+
+    <div class="description">
+        Area 67 is an interactive multiplayer game, that is played by two players, whose goal is to communicate as many words to each other as possible, only through movements, within a one minute limit.
+    </div>
+
+    <!-- PAGE NUMBER -->
+
+    <div class="page-number" id="pageNumber">
+        1 / 9
+    </div>
+
+    <!-- ENLARGED IMAGE OVERLAY -->
+
+    <div class="image-overlay" id="imageOverlay" onclick="closeImage()">
+        <img
+            id="enlargedImage"
+            src="area0.jpeg"
+            alt="Enlarged project image">
+    </div>
+
+    <script>
+
+        /* IMAGES */
+
+        const images = [
+            "area0.jpeg",
+            "area1.jpeg",
+            "area2.jpeg",
+            "area3.jpeg",
+            "area4.jpeg",
+            "area5.jpeg",
+            "area6.jpeg",
+            "area7.jpeg",
+            "area8.jpeg"
+        ];
+
+        let currentImage = 0;
+
+        const image = document.getElementById("projectImage");
+        const pageNumber = document.getElementById("pageNumber");
+        const imageOverlay = document.getElementById("imageOverlay");
+        const enlargedImage = document.getElementById("enlargedImage");
+
+        /* SHOW IMAGE */
+
+        function showImage() {
+            image.src = images[currentImage];
+
+            pageNumber.textContent =
+                (currentImage + 1) + " / " + images.length;
+
+            enlargedImage.src = images[currentImage];
+        }
+
+        /* LOOPING IMAGE NAVIGATION */
+
+        function nextImage() {
+            currentImage = (currentImage + 1) % images.length;
+            showImage();
+        }
+
+        function previousImage() {
+            currentImage = (currentImage - 1 + images.length) % images.length;
+            showImage();
+        }
+
+        /* OPEN ENLARGED IMAGE */
+
+        function openImage() {
+            enlargedImage.src = images[currentImage];
+            imageOverlay.classList.add("active");
+        }
+
+        /* CLOSE ENLARGED IMAGE */
+
+        function closeImage() {
+            imageOverlay.classList.remove("active");
+        }
+
+        /* KEYBOARD NAVIGATION */
+
+        document.addEventListener("keydown", function(event) {
+
+            if (event.key === "Escape") {
+                closeImage();
+                return;
+            }
+
+            if (imageOverlay.classList.contains("active")) {
+                return;
+            }
+
+            if (event.key === "ArrowRight") {
+                nextImage();
+            }
+
+            if (event.key === "ArrowLeft") {
+                previousImage();
+            }
+        });
+
+    </script>
+
+</body>
+</html>
