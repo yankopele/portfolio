@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CHESS SET</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background-color: #B57EDC;
+            padding: 30px;
+            font-family: Arial, Helvetica, sans-serif;
+            color: black;
+        }
+
+        /* HOME / BACK BUTTON */
+
+        .home-button {
+            position: fixed;
+            top: 10px;
+            right: 25px;
+            width: 120px;
+            height: 120px;
+            display: block;
+            z-index: 100;
+        }
+
+        .home-button img {
+            width: 120px;
+            height: 120px;
+            object-fit: contain;
+            transition: transform 0.2s ease;
+        }
+
+        .home-button:hover img {
+            transform: scale(1.05);
+        }
+
+        /* TITLE */
+
+        h1 {
+            margin: 0;
+            font-weight: 700;
+            font-size: 50px;
+            color: black;
+        }
+
+        /* DESCRIPTION */
+
+        .description {
+            position: fixed;
+            left: 30px;
+            right: 30px;
+            top: calc(50% + 300px);
+
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 16px;
+            line-height: 1.4;
+            font-weight: 400;
+            text-align: justify;
+            color: black;
+        }
+
+        /* IMAGE AREA */
+
+        .project {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+
+            width: 60%;
+            height: 75vh;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .chess-image {
+            max-width: 70%;
+            max-height: 70vh;
+
+            width: auto;
+            height: auto;
+            object-fit: contain;
+
+            display: block;
+            cursor: zoom-in;
+        }
+
+        /* ARROW BUTTONS */
+
+        .arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+
+            width: 70px;
+            height: 100px;
+
+            background: transparent;
+            border: none;
+            cursor: pointer;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            z-index: 10;
+            padding: 0;
+        }
+
+        .arrow img {
+            width: 66px;
+            height: 66px;
+
+            max-width: none;
+            max-height: none;
+
+            object-fit: contain;
+            transition: transform 0.2s ease;
+        }
+
+        .left-arrow {
+            left: 3%;
+        }
+
+        .left-arrow img {
+            transform: none;
+        }
+
+        .left-arrow:hover img {
+            transform: scale(1.1);
+        }
+
+        .right-arrow {
+            right: 3%;
+        }
+
+        .right-arrow img {
+            transform: rotate(180deg);
+        }
+
+        .right-arrow:hover img {
+            transform: rotate(180deg) scale(1.1);
+        }
+
+        /* PAGE NUMBER */
+
+        .page-number {
+            position: fixed;
+            bottom: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+
+            font-size: 14px;
+            color: black;
+        }
+
+        /* ENLARGED IMAGE */
+
+        .image-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #B57EDC;
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .image-overlay.active {
+            display: flex;
+        }
+
+        .image-overlay img {
+            max-width: 90%;
+            max-height: 90%;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            display: block;
+            cursor: zoom-out;
+        }
+
+        /* MOBILE ADAPTATION */
+
+        @media (max-width: 600px) {
+
+            body {
+                padding: 20px;
+                min-height: 100vh;
+                overflow-x: hidden;
+                overflow-y: auto;
+            }
+
+            /* HOME BUTTON */
+
+            .home-button {
+                top: 10px;
+                right: 10px;
+                width: 65px;
+                height: 65px;
+            }
+
+            .home-button img {
+                width: 65px;
+                height: 65px;
+            }
+
+            /* TITLE */
+
+            h1 {
+                font-size: 30px;
+                max-width: 75%;
+            }
+
+            /* IMAGE AREA */
+
+            .project {
+                position: relative;
+                top: auto;
+                left: auto;
+                transform: none;
+
+                width: 100%;
+                height: 55vh;
+                margin-top: 35px;
+            }
+
+            .chess-image {
+                max-width: 75%;
+                max-height: 50vh;
+            }
+
+            /* ARROWS */
+
+            .arrow {
+                width: 40px;
+                height: 65px;
+            }
+
+            .arrow img {
+                width: 38px;
+                height: 38px;
+            }
+
+            .left-arrow {
+                left: -5px;
+            }
+
+            .right-arrow {
+                right: -5px;
+            }
+
+            /* DESCRIPTION */
+
+            .description {
+                position: relative;
+                top: auto;
+                left: auto;
+                right: auto;
+
+                margin-top: 25px;
+                margin-bottom: 50px;
+
+                font-size: 14px;
+                line-height: 1.5;
+                text-align: left;
+            }
+
+            /* PAGE NUMBER */
+
+            .page-number {
+                position: relative;
+                bottom: auto;
+                left: auto;
+                transform: none;
+
+                width: 100%;
+                text-align: center;
+                margin-top: 15px;
+                font-size: 13px;
+            }
+
+            /* ENLARGED IMAGE */
+
+            .image-overlay img {
+                max-width: 94%;
+                max-height: 85%;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+<!-- HOME / BACK BUTTON -->
+
+<a href="index.html" class="home-button">
+    <img src="image1.png" alt="Back to home">
+</a>
+
+<div class="header">
+
+    <!-- TITLE -->
+
+    <h1>CHESS SET</h1>
+
+    <!-- IMAGE AREA -->
+
+    <div class="project">
+
+        <button
+            class="arrow left-arrow"
+            onclick="previousImage()"
+            aria-label="Previous image"
+        >
+            <img src="arrow.png" alt="">
+        </button>
+
+        <img
+            id="chessImage"
+            class="chess-image"
+            src="chess1.png"
+            alt="Chess Set"
+            onclick="openImage()"
+        >
+
+        <button
+            class="arrow right-arrow"
+            onclick="nextImage()"
+            aria-label="Next image"
+        >
+            <img src="arrow.png" alt="">
+        </button>
+
+    </div>
+
+    <!-- DESCRIPTION -->
+
+    <div class="description">
+
+        80cm x 80cm chess set<br>
+
+        ceramic figures<br>
+        wooden board, dressed in leather
+
+    </div>
+
+    <!-- PAGE NUMBER -->
+
+    <div class="page-number" id="pageNumber">
+        1 / 3
+    </div>
+
+</div>
+
+<!-- ENLARGED IMAGE OVERLAY -->
+
+<div
+    class="image-overlay"
+    id="imageOverlay"
+    onclick="closeImage()"
+>
+    <img
+        id="enlargedImage"
+        src="chess1.png"
+        alt="Enlarged Chess Set"
+    >
+</div>
+
+<script>
+
+    /* IMAGES */
+
+    const images = [
+        "chess1.png",
+        "chess2.png",
+        "chess3.png"
+    ];
+
+    let currentImage = 0;
+
+    const image = document.getElementById("chessImage");
+    const pageNumber = document.getElementById("pageNumber");
+    const imageOverlay = document.getElementById("imageOverlay");
+    const enlargedImage = document.getElementById("enlargedImage");
+
+
+    /* SHOW IMAGE */
+
+    function showImage() {
+
+        image.src = images[currentImage];
+
+        pageNumber.textContent =
+            (currentImage + 1) + " / " + images.length;
+
+        enlargedImage.src = images[currentImage];
+
+    }
+
+
+    /* NEXT IMAGE - LOOP */
+
+    function nextImage() {
+
+        currentImage = (currentImage + 1) % images.length;
+
+        showImage();
+
+    }
+
+
+    /* PREVIOUS IMAGE - LOOP */
+
+    function previousImage() {
+
+        currentImage =
+            (currentImage - 1 + images.length) % images.length;
+
+        showImage();
+
+    }
+
+
+    /* OPEN ENLARGED IMAGE */
+
+    function openImage() {
+
+        enlargedImage.src = images[currentImage];
+
+        imageOverlay.classList.add("active");
+
+    }
+
+
+    /* CLOSE IMAGE */
+
+    function closeImage() {
+
+        imageOverlay.classList.remove("active");
+
+    }
+
+
+    /* KEYBOARD NAVIGATION */
+
+    document.addEventListener("keydown", function(event) {
+
+        if (event.key === "Escape") {
+
+            closeImage();
+
+            return;
+
+        }
+
+        if (imageOverlay.classList.contains("active")) {
+
+            return;
+
+        }
+
+        if (event.key === "ArrowRight") {
+
+            nextImage();
+
+        }
+
+        if (event.key === "ArrowLeft") {
+
+            previousImage();
+
+        }
+
+    });
+
+</script>
+
+</body>
+</html>
