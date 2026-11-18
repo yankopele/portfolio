@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CAROL AND TIM</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background-color: #F04432;
+            padding: 30px;
+            font-family: Arial, Helvetica, sans-serif;
+            color: black;
+            height: 100vh;
+            height: 100dvh;
+            overflow: hidden;
+        }
+
+        /* HOME / BACK BUTTON */
+
+        .home-button {
+            position: fixed;
+            top: 10px;
+            right: 25px;
+            width: 120px;
+            height: 120px;
+            display: block;
+            z-index: 100;
+        }
+
+        .home-button img {
+            width: 120px;
+            height: 120px;
+            object-fit: contain;
+            transition: transform 0.2s ease;
+        }
+
+        .home-button:hover img {
+            transform: scale(1.05);
+        }
+
+        /* HEADER */
+
+        .header {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            padding-right: 150px;
+        }
+
+        h1 {
+            margin: 0;
+            font-weight: 700;
+            font-size: 50px;
+            line-height: 1;
+            color: black;
+            white-space: nowrap;
+        }
+
+        /* TEXT BOX UNDER TITLE */
+
+        .subtitle {
+            margin-top: 15px;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 16px;
+            line-height: 1.4;
+            font-weight: 400;
+            color: black;
+        }
+
+        /* DESCRIPTION AT THE BOTTOM */
+
+        .description {
+            position: fixed;
+            left: 30px;
+            right: 30px;
+            bottom: 45px;
+            margin: 0;
+
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 16px;
+            line-height: 1.4;
+            font-weight: 400;
+            text-align: justify;
+            color: black;
+
+            z-index: 2;
+        }
+
+        /* IMAGE AREA */
+
+        .book {
+            position: fixed;
+            top: 155px;
+            bottom: 150px;
+            left: 30px;
+            right: 30px;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .book > img {
+            max-width: 75%;
+            max-height: 100%;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            display: block;
+            cursor: zoom-in;
+        }
+
+        /* ARROW BUTTONS */
+
+        .arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+
+            width: 70px;
+            height: 100px;
+
+            background: transparent;
+            border: none;
+            cursor: pointer;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            z-index: 10;
+            padding: 0;
+        }
+
+        .arrow img {
+            width: 66px;
+            height: 66px;
+            max-width: none;
+            max-height: none;
+            object-fit: contain;
+            transition: transform 0.2s ease;
+        }
+
+        /* LEFT ARROW */
+
+        .left-arrow {
+            left: 8%;
+        }
+
+        .left-arrow img {
+            transform: none;
+        }
+
+        .left-arrow:hover img {
+            transform: scale(1.1);
+        }
+
+        /* RIGHT ARROW */
+
+        .right-arrow {
+            right: 8%;
+        }
+
+        .right-arrow img {
+            transform: rotate(180deg);
+        }
+
+        .right-arrow:hover img {
+            transform: rotate(180deg) scale(1.1);
+        }
+
+        /* PAGE NUMBER */
+
+        .page-number {
+            position: fixed;
+            bottom: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 14px;
+            color: black;
+            z-index: 5;
+        }
+
+        /* ENLARGED IMAGE OVERLAY */
+
+        .image-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #F04432;
+            z-index: 1000;
+
+            justify-content: center;
+            align-items: center;
+        }
+
+        .image-overlay.active {
+            display: flex;
+        }
+
+        .image-overlay img {
+            max-width: 90%;
+            max-height: 90%;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            display: block;
+            cursor: zoom-out;
+        }
+
+        /* SMALLER SCREENS */
+
+        @media (max-height: 700px) {
+            h1 {
+                font-size: 40px;
+            }
+
+            .book {
+                top: 130px;
+                bottom: 150px;
+            }
+
+            .description {
+                font-size: 14px;
+                line-height: 1.3;
+            }
+        }
+
+        /* MOBILE RESPONSIVE */
+
+        @media (max-width: 600px) {
+
+            body {
+                padding: 20px;
+                overflow-y: auto;
+                overflow-x: hidden;
+                height: auto;
+                min-height: 100vh;
+                min-height: 100dvh;
+            }
+
+            /* HOME BUTTON */
+
+            .home-button {
+                top: 10px;
+                right: 10px;
+                width: 65px;
+                height: 65px;
+            }
+
+            .home-button img {
+                width: 65px;
+                height: 65px;
+            }
+
+            /* HEADER */
+
+            .header {
+                padding-right: 55px;
+            }
+
+            h1 {
+                font-size: 32px;
+                white-space: normal;
+                line-height: 1.05;
+            }
+
+            /* SUBTITLE */
+
+            .subtitle {
+                margin-top: 12px;
+                font-size: 13px;
+                line-height: 1.4;
+            }
+
+            /* IMAGE AREA */
+
+            .book {
+                position: relative;
+                top: auto;
+                bottom: auto;
+                left: auto;
+                right: auto;
+                transform: none;
+
+                width: 100%;
+                height: 42vh;
+                height: 42dvh;
+                min-height: 220px;
+                max-height: 380px;
+
+                margin-top: 25px;
+            }
+
+            .book > img {
+                max-width: 72%;
+                max-height: 100%;
+            }
+
+            /* ARROWS */
+
+            .arrow {
+                width: 40px;
+                height: 60px;
+            }
+
+            .arrow img {
+                width: 38px;
+                height: 38px;
+            }
+
+            .left-arrow {
+                left: 0;
+            }
+
+            .right-arrow {
+                right: 0;
+            }
+
+            /* DESCRIPTION */
+
+            .description {
+                position: relative;
+                left: auto;
+                right: auto;
+                bottom: auto;
+
+                margin-top: 25px;
+                margin-bottom: 55px;
+
+                font-size: 13px;
+                line-height: 1.4;
+                text-align: left;
+            }
+
+            /* PAGE NUMBER */
+
+            .page-number {
+                position: fixed;
+                bottom: 12px;
+                font-size: 12px;
+                z-index: 5;
+            }
+
+            /* ENLARGED IMAGE */
+
+            .image-overlay img {
+                max-width: 95vw;
+                max-height: 90vh;
+            }
+        }
+
+        /* SMALLER PHONES */
+
+        @media (max-width: 380px) {
+
+            h1 {
+                font-size: 27px;
+            }
+
+            .subtitle,
+            .description {
+                font-size: 12px;
+            }
+
+            .book {
+                height: 38vh;
+                height: 38dvh;
+            }
+
+            .book > img {
+                max-width: 70%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- HOME / BACK BUTTON -->
+
+    <a href="index.html" class="home-button">
+        <img src="image1.png" alt="Back to home">
+    </a>
+
+    <!-- HEADER -->
+
+    <div class="header">
+        <h1>'CAROL AND TIM'</h1>
+
+        <div class="subtitle">
+            Printed and binded at KABK.
+        </div>
+    </div>
+
+    <!-- DESCRIPTION -->
+
+    <p class="description">
+        'Carol and Tim' is a book that exposes one of many cruelties of capitalism through an entanglement of fictionally built narratives, real historical events and alluded emotional relationships, created through the editing, gathering and sequencing of archival photographs of mostly mannequins and nuclear explosions.
+    </p>
+
+    <!-- BOOK / IMAGE GALLERY -->
+
+    <div class="book">
+
+        <button
+            class="arrow left-arrow"
+            onclick="previousImage()"
+            aria-label="Previous image">
+            <img src="arrow.png" alt="">
+        </button>
+
+        <img
+            id="bookImage"
+            src="carol_and_tim 1 copy.jpeg"
+            alt="Carol and Tim"
+            onclick="openImage()">
+
+        <button
+            class="arrow right-arrow"
+            onclick="nextImage()"
+            aria-label="Next image">
+            <img src="arrow.png" alt="">
+        </button>
+
+    </div>
+
+    <!-- PAGE NUMBER -->
+
+    <div class="page-number" id="pageNumber">
+        1 / 36
+    </div>
+
+    <!-- ENLARGED IMAGE OVERLAY -->
+
+    <div class="image-overlay" id="imageOverlay" onclick="closeImage()">
+        <img
+            id="enlargedImage"
+            src="carol_and_tim 1 copy.jpeg"
+            alt="Enlarged Carol and Tim image">
+    </div>
+
+    <script>
+
+        /* IMAGES - IMAGE 2 IS INTENTIONALLY SKIPPED */
+
+        const images = [];
+
+        images.push("carol_and_tim 1 copy.jpeg");
+
+        for (let i = 3; i <= 37; i++) {
+            images.push("carol_and_tim " + i + " copy.jpeg");
+        }
+
+        let currentImage = 0;
+
+        const image = document.getElementById("bookImage");
+        const pageNumber = document.getElementById("pageNumber");
+        const imageOverlay = document.getElementById("imageOverlay");
+        const enlargedImage = document.getElementById("enlargedImage");
+
+        /* SHOW IMAGE */
+
+        function showImage() {
+            image.src = images[currentImage];
+
+            pageNumber.textContent =
+                (currentImage + 1) + " / " + images.length;
+
+            enlargedImage.src = images[currentImage];
+        }
+
+        /* NEXT IMAGE - LOOP BACK TO FIRST */
+
+        function nextImage() {
+            currentImage = (currentImage + 1) % images.length;
+            showImage();
+        }
+
+        /* PREVIOUS IMAGE - LOOP TO LAST */
+
+        function previousImage() {
+            currentImage = (currentImage - 1 + images.length) % images.length;
+            showImage();
+        }
+
+        /* OPEN ENLARGED IMAGE */
+
+        function openImage() {
+            enlargedImage.src = images[currentImage];
+            imageOverlay.classList.add("active");
+        }
+
+        /* CLOSE ENLARGED IMAGE */
+
+        function closeImage() {
+            imageOverlay.classList.remove("active");
+        }
+
+        /* KEYBOARD NAVIGATION */
+
+        document.addEventListener("keydown", function(event) {
+
+            if (event.key === "Escape") {
+                closeImage();
+                return;
+            }
+
+            if (imageOverlay.classList.contains("active")) {
+                return;
+            }
+
+            if (event.key === "ArrowRight") {
+                nextImage();
+            }
+
+            if (event.key === "ArrowLeft") {
+                previousImage();
+            }
+
+        });
+
+    </script>
+
+</body>
+</html>
