@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>HAPPY BDAY MARUSHA</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background-color: grey;
+            padding: 30px;
+            font-family: Arial, Helvetica, sans-serif;
+            color: black;
+            height: 100vh;
+            height: 100dvh;
+            overflow: hidden;
+        }
+
+        /* HOME / BACK BUTTON */
+
+        .home-button {
+            position: fixed;
+            top: 10px;
+            right: 25px;
+            width: 120px;
+            height: 120px;
+            display: block;
+            z-index: 100;
+        }
+
+        .home-button img {
+            width: 120px;
+            height: 120px;
+            object-fit: contain;
+            transition: transform 0.2s ease;
+        }
+
+        .home-button:hover img {
+            transform: scale(1.05);
+        }
+
+        /* HEADER */
+
+        .header {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            padding-right: 150px;
+        }
+
+        /* TITLE */
+
+        h1 {
+            margin: 0;
+            font-weight: 700;
+            font-size: 50px;
+            line-height: 1;
+            color: black;
+        }
+
+        /* TEXT BOX UNDER TITLE */
+
+        .subtitle {
+            margin-top: 15px;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 16px;
+            line-height: 1.4;
+            font-weight: 400;
+            color: black;
+        }
+
+        /* DESCRIPTION AT THE BOTTOM */
+
+        .description {
+            position: fixed;
+            left: 30px;
+            right: 30px;
+            top: calc(50% + 300px);
+
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 16px;
+            line-height: 1.4;
+            font-weight: 400;
+            text-align: justify;
+            color: black;
+
+            z-index: 2;
+        }
+
+        /* IMAGE / VIDEO AREA */
+
+        .project {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+
+            width: 60%;
+            height: 75vh;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .project > img,
+        .project > iframe {
+            max-width: 70%;
+            max-height: 70vh;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            display: block;
+        }
+
+        .project > img {
+            cursor: zoom-in;
+        }
+
+        .project > iframe {
+            width: 70%;
+            aspect-ratio: 16 / 9;
+            border: none;
+        }
+
+        /* ARROW BUTTONS */
+
+        .arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+
+            width: 70px;
+            height: 100px;
+
+            background: transparent;
+            border: none;
+            cursor: pointer;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            z-index: 10;
+            padding: 0;
+        }
+
+        .arrow img {
+            width: 66px;
+            height: 66px;
+            max-width: none;
+            max-height: none;
+            object-fit: contain;
+            transition: transform 0.2s ease;
+        }
+
+        /* LEFT ARROW */
+
+        .left-arrow {
+            left: 3%;
+        }
+
+        .left-arrow img {
+            transform: none;
+        }
+
+        .left-arrow:hover img {
+            transform: scale(1.1);
+        }
+
+        /* RIGHT ARROW */
+
+        .right-arrow {
+            right: 3%;
+        }
+
+        .right-arrow img {
+            transform: rotate(180deg);
+        }
+
+        .right-arrow:hover img {
+            transform: rotate(180deg) scale(1.1);
+        }
+
+        /* PAGE NUMBER */
+
+        .page-number {
+            position: fixed;
+            bottom: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 14px;
+            color: black;
+            z-index: 5;
+        }
+
+        /* ENLARGED IMAGE OVERLAY */
+
+        .image-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: grey;
+            z-index: 1000;
+
+            justify-content: center;
+            align-items: center;
+        }
+
+        .image-overlay.active {
+            display: flex;
+        }
+
+        .image-overlay img {
+            max-width: 90%;
+            max-height: 90%;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            display: block;
+            cursor: zoom-out;
+        }
+
+        /* MOBILE RESPONSIVE */
+
+        @media (max-width: 600px) {
+
+            body {
+                padding: 20px;
+                overflow-y: auto;
+                overflow-x: hidden;
+                height: auto;
+                min-height: 100vh;
+                min-height: 100dvh;
+            }
+
+            /* HOME BUTTON */
+
+            .home-button {
+                top: 10px;
+                right: 10px;
+                width: 65px;
+                height: 65px;
+            }
+
+            .home-button img {
+                width: 65px;
+                height: 65px;
+            }
+
+            /* HEADER */
+
+            .header {
+                padding-right: 55px;
+            }
+
+            /* TITLE */
+
+            h1 {
+                font-size: 32px;
+                line-height: 1.05;
+            }
+
+            /* SUBTITLE */
+
+            .subtitle {
+                margin-top: 12px;
+                font-size: 13px;
+                line-height: 1.4;
+            }
+
+            /* IMAGE / VIDEO AREA */
+
+            .project {
+                position: relative;
+                top: auto;
+                left: auto;
+                transform: none;
+
+                width: 100%;
+                height: 42vh;
+                height: 42dvh;
+                min-height: 220px;
+                max-height: 380px;
+
+                margin-top: 20px;
+            }
+
+            .project > img,
+            .project > iframe {
+                max-width: 72%;
+                max-height: 100%;
+            }
+
+            .project > iframe {
+                width: 72%;
+                height: auto;
+                aspect-ratio: 16 / 9;
+            }
+
+            /* ARROWS */
+
+            .arrow {
+                width: 40px;
+                height: 60px;
+            }
+
+            .arrow img {
+                width: 38px;
+                height: 38px;
+            }
+
+            .left-arrow {
+                left: 0;
+            }
+
+            .right-arrow {
+                right: 0;
+            }
+
+            /* DESCRIPTION */
+
+            .description {
+                position: relative;
+                left: auto;
+                right: auto;
+                top: auto;
+
+                margin-top: 25px;
+                margin-bottom: 55px;
+
+                font-size: 13px;
+                line-height: 1.4;
+                text-align: left;
+            }
+
+            /* PAGE NUMBER */
+
+            .page-number {
+                position: fixed;
+                bottom: 12px;
+                font-size: 12px;
+            }
+
+            /* ENLARGED IMAGE */
+
+            .image-overlay img {
+                max-width: 95vw;
+                max-height: 90vh;
+            }
+        }
+
+        /* SMALLER PHONES */
+
+        @media (max-width: 380px) {
+
+            h1 {
+                font-size: 27px;
+            }
+
+            .subtitle,
+            .description {
+                font-size: 12px;
+            }
+
+            .project {
+                height: 38vh;
+                height: 38dvh;
+            }
+
+            .project > img,
+            .project > iframe {
+                max-width: 70%;
+            }
+
+            .project > iframe {
+                width: 70%;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <!-- HOME / BACK BUTTON -->
+
+    <a href="index.html" class="home-button">
+        <img src="image1.png" alt="Back to home">
+    </a>
+
+    <!-- TITLE AND TEXT BOX -->
+
+    <div class="header">
+        <h1>'HAPPY BDAY MARUSHA'</h1>
+
+        <div class="subtitle">
+            Made in collaboration with Luka Boduljak.<br>Theater performance, shown in Korzo Theater<br>in March 2026, as part of the 'SOUNDSCAPES' class<br>at The Royal Academy Of Art in The Hague.
+        </div>
+    </div>
+
+    <!-- DESCRIPTION -->
+
+    <div class="description">
+        <br>'HAPPY BIRTHDAY MARUSHA' is a theater performance that explores how anticipation could be built through dynamics of movement and sound on stage, and then be interrupted by something unexpected.
+    </div>
+
+    <!-- IMAGE / VIDEO AREA -->
+
+    <div class="project">
+
+        <button
+            class="arrow left-arrow"
+            onclick="previousImage()"
+            aria-label="Previous image">
+            <img src="arrow.png" alt="">
+        </button>
+
+        <!-- YOUTUBE VIDEO: FIRST SLIDE -->
+
+        <iframe
+            id="projectVideo"
+            src="https://www.youtube.com/embed/2W56B1O1hPg?si=m7tFWlCuaeBiN1NI"
+            title="YouTube video player"
+            style="display: none;"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen>
+        </iframe>
+
+        <!-- IMAGES -->
+
+        <img
+            id="projectImage"
+            src="marusha1.jpg"
+            alt="Happy Bday Marusha"
+            onclick="openImage()"
+        >
+
+        <button
+            class="arrow right-arrow"
+            onclick="nextImage()"
+            aria-label="Next image">
+            <img src="arrow.png" alt="">
+        </button>
+
+    </div>
+
+    <!-- PAGE NUMBER -->
+
+    <div class="page-number" id="pageNumber">
+        1 / 6
+    </div>
+
+    <!-- ENLARGED IMAGE OVERLAY -->
+
+    <div class="image-overlay" id="imageOverlay" onclick="closeImage()">
+        <img
+            id="enlargedImage"
+            src="marusha1.jpg"
+            alt="Enlarged Happy Bday Marusha image">
+    </div>
+
+    <script>
+
+        /* SLIDES: YOUTUBE VIDEO FIRST, THEN IMAGES */
+
+        const slides = [
+            {
+                type: "video",
+                src: "https://www.youtube.com/embed/2W56B1O1hPg?si=m7tFWlCuaeBiN1NI"
+            },
+            {
+                type: "image",
+                src: "marusha1.jpg"
+            },
+            {
+                type: "image",
+                src: "marusha2.jpg"
+            },
+            {
+                type: "image",
+                src: "marusha3.jpg"
+            },
+            {
+                type: "image",
+                src: "marusha4.jpg"
+            },
+            {
+                type: "image",
+                src: "marusha5.jpg"
+            }
+        ];
+
+        let currentImage = 0;
+
+        const image = document.getElementById("projectImage");
+        const video = document.getElementById("projectVideo");
+        const pageNumber = document.getElementById("pageNumber");
+        const imageOverlay = document.getElementById("imageOverlay");
+        const enlargedImage = document.getElementById("enlargedImage");
+
+
+        /* SHOW CURRENT SLIDE */
+
+        function showImage() {
+
+            const slide = slides[currentImage];
+
+            if (slide.type === "video") {
+
+                image.style.display = "none";
+                video.style.display = "block";
+
+                video.src = slide.src;
+
+            } else {
+
+                /* Stop YouTube video when moving to an image */
+
+                video.src = "about:blank";
+                video.style.display = "none";
+
+                image.style.display = "block";
+
+                image.src = slide.src;
+                enlargedImage.src = slide.src;
+
+            }
+
+            pageNumber.textContent =
+                (currentImage + 1) + " / " + slides.length;
+
+        }
+
+
+        /* NEXT SLIDE - LOOP BACK TO FIRST */
+
+        function nextImage() {
+
+            currentImage = (currentImage + 1) % slides.length;
+
+            showImage();
+
+        }
+
+
+        /* PREVIOUS SLIDE - LOOP TO LAST */
+
+        function previousImage() {
+
+            currentImage =
+                (currentImage - 1 + slides.length) % slides.length;
+
+            showImage();
+
+        }
+
+
+        /* OPEN ENLARGED IMAGE */
+
+        function openImage() {
+
+            if (slides[currentImage].type !== "image") {
+                return;
+            }
+
+            enlargedImage.src = slides[currentImage].src;
+            imageOverlay.classList.add("active");
+
+        }
+
+
+        /* CLOSE ENLARGED IMAGE */
+
+        function closeImage() {
+
+            imageOverlay.classList.remove("active");
+
+        }
+
+
+        /* KEYBOARD NAVIGATION */
+
+        document.addEventListener("keydown", function(event) {
+
+            if (event.key === "Escape") {
+
+                closeImage();
+
+                return;
+
+            }
+
+            if (imageOverlay.classList.contains("active")) {
+
+                return;
+
+            }
+
+            if (event.key === "ArrowRight") {
+
+                nextImage();
+
+            }
+
+            if (event.key === "ArrowLeft") {
+
+                previousImage();
+
+            }
+
+        });
+
+
+        /* INITIALISE GALLERY */
+
+        showImage();
+
+    </script>
+
+</body>
+</html>
