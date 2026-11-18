@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Website</title>
+
+    <style>
+        body {
+            margin: 0;
+            background-color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .image-container {
+            position: relative;
+            width: 45%;
+        }
+
+        .image-container > img {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+
+        /* HOVER IMAGE */
+
+        .hover-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .image-container:hover .hover-image {
+            opacity: 1;
+        }
+
+        /* PROJECT BUTTONS */
+
+        .project-button {
+            position: absolute;
+            left: 19.7%;
+
+            color: black;
+            text-decoration: none;
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: 700;
+            font-size: 1.3vw;
+            white-space: nowrap;
+
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .image-container:hover .project-button {
+            opacity: 1;
+        }
+
+        .project-button:hover,
+        .contact-button:hover {
+            text-decoration: underline;
+        }
+
+        /* PROJECT POSITIONS */
+
+        .project1 { top: 9.5%; }
+        .project2 { top: 15.7%; }
+        .project3 { top: 21.9%; }
+        .project4 { top: 28.1%; }
+        .project5 { top: 34.3%; }
+        .project6 { top: 40.5%; }
+
+        /* CONTACT BUTTONS — SHARED STYLE */
+
+        .contact-button {
+            position: absolute;
+
+            color: black;
+            text-decoration: none;
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: 700;
+            font-size: 1.3vw;
+            white-space: nowrap;
+
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .image-container:hover .contact-button {
+            opacity: 1;
+        }
+
+        .contact-button:hover {
+            text-decoration: underline;
+        }
+
+        /* ABOUT ME */
+
+        .contact-about {
+            left: 37%;
+            top: 70%;
+        }
+
+        /* EMAIL */
+
+        .contact-email {
+            left: 17.5%;
+            top: 76%;
+        }
+
+        /* INSTAGRAM */
+
+        .contact-instagram {
+            left: 24.5%;
+            top: 82.2%;
+        }
+
+        /* MOBILE ADAPTATION */
+
+        @media (max-width: 600px) {
+
+            body {
+                padding: 15px;
+            }
+
+            .image-container {
+                width: 95%;
+            }
+
+            .project-button,
+            .contact-button {
+                font-size: 2.5vw;
+                opacity: 1;
+            }
+
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <div class="image-container">
+
+        <!-- ORIGINAL IMAGE -->
+
+        <img src="image1.png" alt="First image">
+
+        <!-- HOVER IMAGE -->
+
+        <img
+            src="image2.png"
+            alt="Second image"
+            class="hover-image"
+        >
+
+        <!-- PROJECT LINKS -->
+
+        <a href="grandfathers.html" class="project-button project1">
+            'ON GRANDFATHERS'
+        </a>
+
+        <a href="marusha.html" class="project-button project2">
+            'HAPPY BDAY MARUSHA'
+        </a>
+
+        <a href="carol-and-tim.html" class="project-button project3">
+            'CAROL AND TIM'
+        </a>
+
+        <a href="cine-kid.html" class="project-button project4">
+            CINE KID CLIENT ASSIGNMENT
+        </a>
+
+        <a href="chess-set.html" class="project-button project5">
+            CHESS SET
+        </a>
+
+        <a href="wallace.html" class="project-button project6">
+            'WALLACE'
+        </a>
+
+        <!-- ABOUT ME -->
+
+        <a href="about.html" class="contact-button contact-about">
+            ABOUT ME
+        </a>
+
+        <!-- EMAIL -->
+
+        <a
+            href="mailto:yankopele@gmail.com"
+            class="contact-button contact-email">
+            yankopele@gmail.com
+        </a>
+
+        <!-- INSTAGRAM -->
+
+        <a
+            href="https://www.instagram.com/__yan___________/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="contact-button contact-instagram">
+            @__yan_________
+        </a>
+
+    </div>
+
+</body>
+</html>
