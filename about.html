@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ABOUT ME</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background-color: #5C4033;
+            padding: 30px;
+            font-family: Arial, Helvetica, sans-serif;
+            color: black;
+        }
+
+        /* HOME / BACK BUTTON */
+
+        .home-button {
+            position: fixed;
+            top: 10px;
+            right: 25px;
+
+            width: 120px;
+            height: 120px;
+
+            display: block;
+
+            z-index: 100;
+        }
+
+        .home-button img {
+            width: 120px;
+            height: 120px;
+
+            object-fit: contain;
+
+            transition: transform 0.2s ease;
+        }
+
+        .home-button:hover img {
+            transform: scale(1.05);
+        }
+
+        /* TITLE */
+
+        h1 {
+            margin: 0;
+            font-weight: 700;
+            font-size: 50px;
+            line-height: 1;
+            color: black;
+        }
+
+        /* IMAGE AREA */
+
+        .about-image {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+
+            max-width: 70%;
+            max-height: 55vh;
+
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            display: block;
+        }
+
+        /* DESCRIPTION */
+
+        .description {
+            position: fixed;
+            left: 30px;
+            right: 30px;
+            top: calc(50% + 300px);
+
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 16px;
+            line-height: 1.4;
+            font-weight: 400;
+            text-align: justify;
+            color: black;
+        }
+
+        /* MOBILE ADAPTATION */
+
+        @media (max-width: 600px) {
+
+            body {
+                padding: 20px;
+                min-height: 100vh;
+                min-height: 100dvh;
+                overflow-x: hidden;
+                overflow-y: auto;
+            }
+
+            /* HOME BUTTON */
+
+            .home-button {
+                top: 10px;
+                right: 10px;
+                width: 65px;
+                height: 65px;
+            }
+
+            .home-button img {
+                width: 65px;
+                height: 65px;
+            }
+
+            /* TITLE */
+
+            h1 {
+                font-size: 32px;
+            }
+
+            /* IMAGE */
+
+            .about-image {
+                position: relative;
+                top: auto;
+                left: auto;
+                transform: none;
+
+                max-width: 90%;
+                max-height: 45vh;
+
+                width: auto;
+                height: auto;
+
+                margin: 35px auto 0;
+            }
+
+            /* DESCRIPTION */
+
+            .description {
+                position: relative;
+                top: auto;
+                left: auto;
+                right: auto;
+
+                margin-top: 25px;
+                margin-bottom: 30px;
+
+                font-size: 14px;
+                line-height: 1.5;
+                text-align: left;
+            }
+        }
+
+        /* SMALLER PHONES */
+
+        @media (max-width: 380px) {
+
+            h1 {
+                font-size: 27px;
+            }
+
+            .description {
+                font-size: 13px;
+            }
+
+            .about-image {
+                max-width: 95%;
+                max-height: 40vh;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+<!-- HOME / BACK BUTTON -->
+
+<a href="index.html" class="home-button">
+    <img src="image1.png" alt="Back to home">
+</a>
+
+<!-- TITLE -->
+
+<h1>ABOUT ME</h1>
+
+<!-- CENTERED IMAGE -->
+
+<img
+    class="about-image"
+    src="face.png"
+    alt="Portrait"
+>
+
+<!-- DESCRIPTION -->
+
+<div class="description">
+    My name is Yan Abadjiev. I am 21 years old. I was born in Sofia, Bulgaria. I am currently in the third year of my Interactive Media Design bachelor at The Royal Academy Of Art in The Hague.<br>In my artistic practices, my fascination for storytelling is pulling me in the direction of trying to translate my thoughts, memories, fascinations, opinions, sensations into narratives that an audience can then follow, become part of and eventually hopefully feel. The art that I make is an amalgamation of impressions of feelings that I get from certain little aspects or moments in my life that intrigue me enough to dig deeper into them, explore them, analyse them, question them in order to better understand their origin.
+</div>
+
+</body>
+</html>
