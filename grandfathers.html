@@ -199,19 +199,29 @@
                 max-width: 90%;
             }
 
+            /* IMAGE AREA */
+
             .project {
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
+                position: relative;
+                top: auto;
+                left: auto;
+                transform: none;
+
                 width: 100%;
                 height: 40vh;
+                height: 40dvh;
+                min-height: 220px;
+                max-height: 350px;
+
+                margin: 20px auto 0;
             }
 
             .project > img {
                 max-width: 75%;
                 max-height: 100%;
             }
+
+            /* ARROWS */
 
             .arrow {
                 width: 40px;
@@ -231,19 +241,25 @@
                 right: 2%;
             }
 
+            /* DESCRIPTION */
+
             .description {
                 position: static;
-                margin-top: calc(50vh + 20px);
+                margin-top: 20px;
                 font-size: 13px;
                 line-height: 1.4;
                 text-align: left;
             }
+
+            /* PAGE NUMBER */
 
             .page-number {
                 position: fixed;
                 bottom: 12px;
                 font-size: 12px;
             }
+
+            /* ENLARGED IMAGE */
 
             .image-overlay img {
                 max-width: 95vw;
