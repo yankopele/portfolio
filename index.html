@@ -35,6 +35,7 @@
             left: 0;
             opacity: 0;
             transition: opacity 0.3s ease;
+            pointer-events: none;
         }
 
         .image-container:hover .hover-image {
@@ -133,12 +134,32 @@
                 width: 95%;
             }
 
-            .project-button,
-            .contact-button {
-                font-size: 2.5vw;
+            /* HIDE LINKS AND SECOND IMAGE INITIALLY */
+
+            .image-container:hover .hover-image {
+                opacity: 0;
+            }
+
+            .image-container:hover .project-button,
+            .image-container:hover .contact-button {
+                opacity: 0;
+            }
+
+            /* SHOW SECOND IMAGE AND LINKS WHEN TAPPED */
+
+            .image-container.mobile-active .hover-image {
                 opacity: 1;
             }
 
+            .image-container.mobile-active .project-button,
+            .image-container.mobile-active .contact-button {
+                opacity: 1;
+            }
+
+            .project-button,
+            .contact-button {
+                font-size: 2.5vw;
+            }
         }
 
     </style>
@@ -146,11 +167,18 @@
 
 <body>
 
-    <div class="image-container">
+    <div class="image-container" id="imageContainer">
 
         <!-- ORIGINAL IMAGE -->
 
-        <img src="image1.png" alt="First image">
+        <img
+            src="image1.png"
+            alt="First image"
+            id="mainImage"
+            role="button"
+            tabindex="0"
+            aria-label="Show or hide project links"
+        >
 
         <!-- HOVER IMAGE -->
 
@@ -211,6 +239,30 @@
         </a>
 
     </div>
+
+    <script>
+
+        /* MOBILE IMAGE TOGGLE */
+
+        const imageContainer = document.getElementById("imageContainer");
+        const mainImage = document.getElementById("mainImage");
+
+        function toggleMobileMenu() {
+            if (window.matchMedia("(max-width: 600px)").matches) {
+                imageContainer.classList.toggle("mobile-active");
+            }
+        }
+
+        mainImage.addEventListener("click", toggleMobileMenu);
+
+        mainImage.addEventListener("keydown", function(event) {
+            if (event.key === "Enter" || event.key === " ") {
+                event.preventDefault();
+                toggleMobileMenu();
+            }
+        });
+
+    </script>
 
 </body>
 </html>
